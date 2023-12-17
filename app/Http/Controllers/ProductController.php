@@ -13,7 +13,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return $products;
     }
 
     /**
@@ -37,7 +38,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $product = Product::find($id);
+        return $product->artist;
     }
 
     /**
@@ -61,6 +63,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return "PRODUCT DELETED";
     }
 }
