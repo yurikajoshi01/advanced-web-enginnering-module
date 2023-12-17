@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
@@ -22,15 +24,22 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('product-form');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request)
+    public function store(Request $request)
     {
-        //
+        $product = new Product;
+
+        $product->artist = $request->artist;
+        $product->title = $request->title;
+        $product->price = $request->price;
+
+        $product->save();
+        return redirect('/products');
     }
 
     /**
@@ -38,8 +47,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $product = Product::find($id);
-        return $product->artist;
+        $products = Product::all();
+        return view('products',['products'=>$products]);
     }
 
     /**
@@ -47,7 +56,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('product',['product'=>$product]);
     }
 
     /**
