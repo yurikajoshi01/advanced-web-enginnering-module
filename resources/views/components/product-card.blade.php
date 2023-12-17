@@ -1,3 +1,4 @@
+
 <div>
    <p>{{$product->artist}}</p>
    <p>{{$product->title}}</p>
