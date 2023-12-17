@@ -1,3 +1,5 @@
 <div>
-    <!-- Very little is needed to make a happy life. - Marcus Aurelius -->
+   <p>{{$product->artist}}</p>
+   <p>{{$product->title}}</p>
+   <p>{{$product->price}}</p>
 </div>
