@@ -1,11 +1,17 @@
+@extends ('layouts.app')
 
+@section('content')
     <html>
 <head>
-    <title>Larevel</title>
+    <title>Laravel</title>
 </head>
 <body>
-    <h1>This is the BG</h1>
+
+    <br/>
+    <h1>Welcome!</h1>
 
     {{$slot}}
 </body>
     </html>
+
+@endsection
