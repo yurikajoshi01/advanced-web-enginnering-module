@@ -27,13 +27,19 @@
                     </div>
                 </header>
             @endif
+            <main class="border-bottom-double border-2">
+            <!-- Menu -->
+            @include('layouts.menu')   
+            
+            <!-- {{$slot ?? ''}} -->
 
-            <!-- Page Content -->
-            <main>
+            </main>
+                    <!-- Page Content -->
+            
             <div class="product-list">
              @yield('content')
             </div>
-            </main>
+            
         </div>
     </body>
 </html>
