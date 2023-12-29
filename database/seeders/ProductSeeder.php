@@ -15,8 +15,9 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         $products = [
-            ['artist' => 'The Jam', 'title' => 'Modern World','price' => 399],
-            ['artist' => 'Amy Winehouse', 'title' => 'Back to Black','price' => 299],
+            ['artist' => 'The Jam', 'title' => 'Modern World','price' => 399, 'type'=>2],
+            ['artist' => 'Amy Winehouse', 'title' => 'Back to Black','price' => 299, 'type'=>2],
+            ['artist' => 'OmoCat', 'title' => 'Omori','price' => 899, 'type'=>3],
         ];
 
         foreach($products as $product) {
@@ -24,6 +25,7 @@ class ProductSeeder extends Seeder
                 'artist' => $product['artist'],
                 'title' => $product['title'],
                 'price' => $product['price'],
+                'product_type_id' => $product['type'],
        ]);
     }
     }

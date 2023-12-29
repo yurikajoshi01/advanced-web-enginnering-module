@@ -4,6 +4,7 @@
 <div class="p-8 max-w-xl bg-purple-200">
 @endif
     <div class ="bg-white p-1 rounded-lg shadow-lg">
+        <h2 class="text-purple-700 mb-4 text-lg font-bold">{{$product->productType->type}}</h2>
         <h3 class="text-purple-600 mb-4 text-lg font-bold">{{$product['artist']}}</h3>
         <h3 class ="font-bold mb-2 text-gray-800">{{$product['title']}}</h3>
         <div class="flex justify-between">
