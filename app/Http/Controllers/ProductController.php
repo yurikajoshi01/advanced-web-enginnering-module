@@ -37,6 +37,7 @@ class ProductController extends Controller
     {
         $product = new Product;
 
+        $product->product_type_id = $request->producttype;
         $product->artist = $request->artist;
         $product->title = $request->title;
         $product->price = $request->price;
