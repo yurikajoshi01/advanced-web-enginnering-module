@@ -35,6 +35,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request -> validate([
+            'title' => 'required|max:255',
+            'artist' => 'required|max:255',
+            'price' => 'required|numeric',
+            'producttype' => 'required|Integer',
+        ]);
+
         $product = new Product;
 
         $product->product_type_id = $request->producttype;
@@ -43,7 +50,7 @@ class ProductController extends Controller
         $product->price = $request->price;
 
         $product->save();
-        return redirect('/products');
+        return redirect(route('create'));
     }
 
     /**

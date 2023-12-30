@@ -1,8 +1,7 @@
 @extends('layouts.app-new')
 
 @section('content')
-    <h2>Full List of Products</h2>
-
+  
     @foreach($products->chunk(4) as $chunk)
         <div class="grid grid-cols-4">
             @foreach($chunk as $product)
