@@ -17,16 +17,20 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+            
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+        <header class = "flex justify-between border-bottom-double border-2">
+        <div class = "flex flex-col items-start border-2 rounded-lg m-5">            
+            <img src="{{asset('images/logo.png')}}" alt="logo"  class = "m-5">
+            <h2 class = "font-bold text-lg self-center">AWE COMPONENT 2</h2>
+        </div>  
+        <div>
+            <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+            @if (Route::has('register'))
+                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+            @endif     
+        </div>
+    </header>
             <main class="border-bottom-double border-2">
             <!-- Menu -->
             @include('layouts.menu')   

@@ -15,9 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[ProductController::class,'index'])->name('home');
+
 
 Route::get('/products/create', [ProductController::class, 'create'])->name('create');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('show');
@@ -27,10 +26,6 @@ Route::post('/products', [ProductController::class, 'store'])->name('store');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/home', function () {
-    return view('home');
-})->middleware(['auth', 'verified'])->name('home');
 
 
 Route::middleware('auth')->group(function () {

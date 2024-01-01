@@ -19,8 +19,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="artist" class="block text-sm font-medium text-gray-600">Artist:</label>
-            <input type="text" id="artist" name="artist" class="mt-1 p-2 border rounded-md w-full">
+            <label for="artist" class="block text-sm font-medium text-gray-600">Artist/Author:</label>
+            <input type="text" id="artist" name="artist" class="mt-1 p-2 border rounded-md w-full" placeholder="Artist,Author or Publisher's name">
             @error('artist')
             <p class = "text-red-500 font-medium ">{{$errors->first('artist')}}</p>
             @enderror
@@ -28,7 +28,7 @@
 
         <div class="mb-3">
             <label for="title" class="block text-sm font-medium text-gray-600">Title:</label>
-            <input type="text" id="title" name="title" class="mt-1 p-2 border rounded-md w-full">
+            <input type="text" id="title" name="title" class="mt-1 p-2 border rounded-md w-full" placeholder="title">
             @error('title')
             <p class = "text-red-500 font-medium ">{{$errors->first('title')}}</p>
             @enderror
@@ -36,7 +36,7 @@
 
         <div class="mb-3">
             <label for="price" class="block text-sm font-medium text-gray-600">Price:</label>
-            <input type="text" id="price" name="price" class="mt-1 p-2 border rounded-md w-full">
+            <input type="text" id="price" name="price" class="mt-1 p-2 border rounded-md w-full" placeholder="price">
             @error('price')
             <p class = "text-red-500 font-medium ">{{$errors->first('price')}}</p>
             @enderror
