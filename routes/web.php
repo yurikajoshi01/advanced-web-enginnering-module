@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[ProductController::class,'index'])->name('home');
 
 
-Route::get('/products/create', [ProductController::class, 'create'])->name('create');
+Route::get('/products/create', [ProductController::class, 'create'])->middleware('can:create, App\Models\Product')->name('create');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('show');
 Route::get('/products', [ProductController::class, 'index'])->name('index');
 Route::post('/products', [ProductController::class, 'store'])->name('store');

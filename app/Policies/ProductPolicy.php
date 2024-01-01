@@ -11,9 +11,9 @@ class ProductPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool   //THE ? is preceeding User
     {
-        //
+            return true;
     }
 
     /**
@@ -21,16 +21,19 @@ class ProductPolicy
      */
     public function view(User $user, Product $product): bool
     {
-        //
+        return true;
     }
 
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user) : Response // THE NEW RETURN TYPE - IT IS STILL A PASS/FAIL TYPE RETURN
     {
-        //
+            return $user->is_admin == 1 
+                    ? Response::allow() 
+                    : Response::denyAsNotFound();
     }
+
 
     /**
      * Determine whether the user can update the model.

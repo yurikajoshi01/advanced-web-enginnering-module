@@ -10,12 +10,15 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    // public function __construct(){
-    //     $this->middleware('auth');
-    // }
+    
     /**
+     *
      * Display a listing of the resource.
      */
+    public function __construct() {
+        //$this->authorizeResource(Product::class, 'product');
+    }
+
     public function index()
     {
         $products = Product::all()->SortBy('artist');
@@ -35,6 +38,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Product::class);
         $validated = $request -> validate([
             'title' => 'required|max:255',
             'artist' => 'required|max:255',
