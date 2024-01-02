@@ -21,7 +21,7 @@
 
         <header class = "flex justify-between border-bottom-double border-2">
         <div class = "flex flex-col items-start border-2 rounded-lg m-5">            
-            <img src="{{asset('images/logo.png')}}" alt="logo"  class = "m-5">
+            <img src="{{asset('images/logo.png')}}" alt="logo" class = "m-5 w-40 max-w-xs">
             <h2 class = "font-bold text-lg self-center">AWE COMPONENT 2</h2>
         </div>  
         <div>

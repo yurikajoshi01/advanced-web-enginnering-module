@@ -1,17 +1,26 @@
-@if(Route::currentRouteName()=='index')
-<div class="p-2 bg-purple-200">
-@else 
-<div class="p-8 max-w-xl bg-purple-200">
-@endif
-    <div class ="bg-white p-1 rounded-lg shadow-lg">
-        <h2 class="text-purple-700 mb-4 text-lg font-bold">{{$product->productType->type}}</h2>
+<div class = "p-2 m-2 rounded-lg shadow-lg bg-gray-50 border-2 border-purple-400 max-md">
+    <div class="flex justify-between">
         <h3 class="text-purple-600 mb-4 text-lg font-bold">{{$product['artist']}}</h3>
-        <h3 class ="font-bold mb-2 text-gray-800">{{$product['title']}}</h3>
-        <div class="flex justify-between">
-            <p class="text-gray-700">£{{$product['price']/100}}</p>
-            @if(Route::currentRouteName()=='index')
-                <button value="{{$product['id']}}" class="bg-purple-400 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-full select-product">Select</button>
-            @endif
-        </div>
-    </div>
+        <p class="bg-purple-400 text-black text-sm py-2 px-2">{{$product->productType['type']}}</p>
+    </div>
+    <h3 class="font-bold mb-2 text-purple-700">{{$product['title']}}</h3>
+    <p class ="text-grey-700">£{{number_format($product['price']/100, 2, '.', ',')}}</p>
+    @if ($product->imagename=="no_image.png")
+    <img src="{{asset('images/'.$product->imagename)}}" alt="product" class ="m-5 w-40 max-w-xs">
+    @else
+    <img src="{{asset('storage/images/'.$product->imagename)}}" alt="product" class ="m-5 w-40 max-w-xs">
+    @endif
+    <div class = "flex justify-between">
+    <p></p>
+        @if(Route::currentRouteName()=='index' || Route::currentRouteName()=='search')
+            <button value = "{{$product['id']}}" class="bg-purple-300 hover:bg-purple-500 text-2hite font-bold py-2 px-4 rounded-full select-product">Select</button>
+        @elseif(Route::currentRouteName()=='show')
+        @can('purchase-product')
+            <button value = "{{$product['id']}}" class="bg-purple-300 hover:bg-purple-500 text-2hite font-bold py-2 px-4 rounded-full">Buy</button>
+        @endcan
+        @can('edit-product')
+            <button value = "{{$product['id']}}" class="bg-purple-300 hover:bg-purple-500 text-2hite font-bold py-2 px-4 rounded-full edit-product">Edit</button>            
+        @endcan
+        @endif    
+    </div>
 </div>
