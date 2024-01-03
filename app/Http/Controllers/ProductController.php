@@ -21,19 +21,18 @@ class ProductController extends Controller
         //$this->authorizeResource(Product::class, 'product');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-       // Determine the condition for displaying random products
-    $displayRandomProducts = request()->route()->named('home');
+        // Determine the condition for displaying random products
+        $displayRandomProducts = $request->route()->named('home');
 
-    if ($displayRandomProducts) {
-        $randomProducts = Product::inRandomOrder()->limit(5)->get();
-        return view('home', compact('randomProducts'));
-    } else {
-        $products = Product::orderBy('artist')->paginate(4);
-        return view('products', compact('products'));
-    }
-    
+        if ($displayRandomProducts) {
+            $randomProducts = Product::inRandomOrder()->limit(5)->get();
+            return view('home', compact('randomProducts'));
+        } else {
+            $products = Product::paginate(5);
+            return view('products', ['products' => $products, 'request' => $request]);
+        }
     }
     
 
@@ -125,4 +124,39 @@ class ProductController extends Controller
         $product->delete();
         return response()->json(["msg"=>"success"]);
     }
+
+    public function search(Request $request)
+    {
+        $query = Product::query();
+
+        // Check if a product type is selected for sorting
+        if ($request->has('producttype') && $request->producttype !== 'all') {
+            $query->where('product_type_id', $request->producttype);
+        }
+
+        // Check if a sort order is selected
+        if ($request->has('sortOrder')) {
+            $sortOrder = $request->sortOrder;
+            $query->orderBy('artist', $sortOrder);
+        } else {
+            // Default sort order (ascending) if not specified
+            $query->orderBy('artist', 'asc');
+        }
+
+        // Check if a search query is provided
+        if ($request->has('search')) {
+            $searchQuery = $request->search;
+            $query->where(function ($q) use ($searchQuery) {
+                $q->where('title', 'like', '%' . $searchQuery . '%')
+                    ->orWhere('artist', 'like', '%' . $searchQuery . '%');
+                // Add more fields to search as needed
+            });
+        }
+
+        $products = $query->paginate(4);
+
+        return view('products', compact('products'));
+        
+    }
+
 }
