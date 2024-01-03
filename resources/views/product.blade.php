@@ -1,7 +1,4 @@
-@extends('layouts.app-new')
-
-@section('content')
-
+<x-app-layout>
 @include('product-template',['product'=> $product])
 
-@endsection
+</x-app-layout>

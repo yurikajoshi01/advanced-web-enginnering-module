@@ -2,23 +2,47 @@
 //https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
 //https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 
-window.onload = function() {
+
+window.onload=function(){
     document.addEventListener('change', e => {    
         if (e.target.matches('select.select-box')) {
-            //example for dropdown list event
+            filterByProductType(e.target.value)
         }
-    });   
-    document.addEventListener('click', e => {
+    }); 
+    document.addEventListener('click',e=>{
         if (e.target.matches('button.select-product')){
             getProductByID(e.target.value);
         }
-         if (e.target.matches('button.edit-product')) {
-            //example for button click event
+        if (e.target.matches('button.update-product')) {
+            updateProductByID(e.target.value);
         }
+        if (e.target.matches('button.edit-product')) {
+            editProductByID(e.target.value);        }       
     });
 }
 
 function getProductByID(id){
-    window.location = "/products/"+id;
+    window.location="/products/"+id;
 }
 
+function editProductByID(id){
+    window.location="/products/"+id+"/edit";
+}
+
+
+
+
+async function  filterByProductType(id) {
+    try{
+        const response = await axios.get('/search',
+            {params: {producttype:id}}
+        );
+        
+        var filter = document.getElementById("productlist");
+        filter.innerHTML = response.data;
+                
+    }
+    catch (error) {
+        console.error(error);
+    }
+}

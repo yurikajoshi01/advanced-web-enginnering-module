@@ -81,15 +81,32 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-       //
+        $producttypes=ProductType::all()->sortBy('type');
+        return view('products-edit',['product'=>$product, 'producttypes'=>$producttypes]);
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(Request $request, Product $product)
     {
-        //
+        $validated = $request -> validate([
+            'title' => 'required|max:255',
+            'artist' => 'required|max:255',
+            'price' => 'required|numeric',
+            'producttype' => 'required|Integer',
+        ]);
+
+        $product->artist = $request->artist;
+        $product->title = $request->title;
+        $product->price = $request->price;
+        $product->product_type_id = $request->producttype;
+
+
+        $product->save();
+        return Redirect::route('index');
+
     }
 
     /**

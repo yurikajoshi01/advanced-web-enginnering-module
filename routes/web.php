@@ -22,6 +22,8 @@ Route::get('/products/create', [ProductController::class, 'create'])->middleware
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('show');
 Route::get('/products', [ProductController::class, 'index'])->name('index');
 Route::post('/products', [ProductController::class, 'store'])->name('store');
+Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('edit');
+Route::put('/products/{product}', [ProductController::class, 'update'])->name('update');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
