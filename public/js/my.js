@@ -17,7 +17,11 @@ window.onload=function(){
             updateProductByID(e.target.value);
         }
         if (e.target.matches('button.edit-product')) {
-            editProductByID(e.target.value);        }       
+            editProductByID(e.target.value);        }
+
+        if (e.target.matches('button.delete-product')) {
+            deleteProductByID(e.target.value);
+        }       
     });
 }
 
@@ -29,8 +33,18 @@ function editProductByID(id){
     window.location="/products/"+id+"/edit";
 }
 
-
-
+async function deleteProductByID(id){
+    try{
+        const response = await axios.delete('/products/'+id);
+        if(response.data.msg=='success'){
+            alert('The Product has been Successfully Deleted');
+            window.location = '/products';
+        }
+    }
+    catch (error){
+        console.error(error);
+    }
+}
 
 async function  filterByProductType(id) {
     try{

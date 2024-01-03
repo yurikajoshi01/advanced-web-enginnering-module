@@ -100,7 +100,7 @@ class ProductController extends Controller
 
         $product->artist = $request->artist;
         $product->title = $request->title;
-        $product->price = $request->price;
+        $product->price = $request->price*100;
         $product->product_type_id = $request->producttype;
 
 
@@ -115,6 +115,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return "PRODUCT DELETED";
+        return response()->json(["msg"=>"success"]);
     }
 }

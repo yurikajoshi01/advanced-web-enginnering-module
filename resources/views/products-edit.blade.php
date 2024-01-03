@@ -36,7 +36,8 @@
     <input type="number" step='0.01' id="price" name="price" value="{{$product['price']/100}}">
     </p>
 
-    <div class="flex justify-center justify-end md-4 top-auto">
+    <div class="flex justify-center justify-between mt-4 top-auto">
+        <button value="{{$product['id']}}" type="button" class="bg-purple-400 text-white text-xs px-2 py-2 rounded-md mb-2 mr-2 uppercase hover:bg-purple-700 delete-product">Delete</button>
         <button type="submit" value="Submit" class="bg-purple-400 text-white px-9 py-2 rounded-md mb-2 mr-2 upperclass hover:bg-purple-700">Update</button>
-        </div>
+    </div>
 </x-app-layout>
