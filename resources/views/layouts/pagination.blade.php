@@ -1,4 +1,4 @@
-<!-- @if ($products->hasPages())
+@if ($products->hasPages())
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end mb-4">
             {{-- Previous Page Link --}}
@@ -76,4 +76,4 @@
         color: #6c757d;
         border-color: #dee2e6;
     }
-</style> -->
+</style>

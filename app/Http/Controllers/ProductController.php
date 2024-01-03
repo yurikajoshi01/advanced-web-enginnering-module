@@ -23,8 +23,9 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::all()->sortBy('artist');
-        return view('products',['products'=>$products]);
+        $products = Product::orderBy('artist')->paginate(4); // Adjust the number based on your requirement
+    
+        return view('products', compact('products')); // Match the view name with the existing 'products.blade.php'
     }
     
 

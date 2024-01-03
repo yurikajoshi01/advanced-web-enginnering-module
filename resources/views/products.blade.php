@@ -8,6 +8,7 @@
             </div>
         @endforeach
 
+        @include('layouts.pagination')
        
     </div>
 </x-app-layout>
