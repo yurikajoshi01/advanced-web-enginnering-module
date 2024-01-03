@@ -23,9 +23,17 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::orderBy('artist')->paginate(4); // Adjust the number based on your requirement
+       // Determine the condition for displaying random products
+    $displayRandomProducts = request()->route()->named('home');
+
+    if ($displayRandomProducts) {
+        $randomProducts = Product::inRandomOrder()->limit(5)->get();
+        return view('home', compact('randomProducts'));
+    } else {
+        $products = Product::orderBy('artist')->paginate(4);
+        return view('products', compact('products'));
+    }
     
-        return view('products', compact('products')); // Match the view name with the existing 'products.blade.php'
     }
     
 
