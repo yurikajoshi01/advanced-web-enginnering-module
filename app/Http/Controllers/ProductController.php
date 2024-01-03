@@ -30,7 +30,7 @@ class ProductController extends Controller
             $randomProducts = Product::inRandomOrder()->limit(5)->get();
             return view('home', compact('randomProducts'));
         } else {
-            $products = Product::paginate(5);
+            $products = Product::paginate(8);
             return view('products', ['products' => $products, 'request' => $request]);
         }
     }
@@ -153,7 +153,7 @@ class ProductController extends Controller
             });
         }
 
-        $products = $query->paginate(4);
+        $products = $query->paginate(8);
 
         return view('products', compact('products'));
         
