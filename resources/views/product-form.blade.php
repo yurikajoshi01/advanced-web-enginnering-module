@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="max-w-xs mx-auto mt-8">
-    <form action="/products" method="post" class="bg-white p-4 rounded-md shadow-md">
+    <form action="/products" method="post" enctype="multipart/form-data" class="bg-white p-4 rounded-md shadow-md">
         @csrf
         <div class="mb-3">
         <h3 class="text-purple-700 mb-4 text-lg font-bold">Add New Product:</h3>
@@ -41,6 +41,11 @@
             <p class = "text-red-500 font-medium ">{{$errors->first('price')}}</p>
             @enderror
         </div>
+
+        <div class="form-group">
+        <label class="block text-sm font-medium text-gray-600">Image File</label>
+        <input id="file" name="file" type="file"/>       
+        </div>
 
         <button type="submit" class="bg-purple-400 text-black p-2 rounded-md hover:bg-purple-700 w-full">Submit</button>
     </form>

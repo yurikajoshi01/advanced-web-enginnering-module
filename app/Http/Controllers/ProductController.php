@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
+use App\Models\ProductType;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
@@ -21,9 +23,10 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::all()->SortBy('artist');
+        $products = Product::all()->sortBy('artist');
         return view('products',['products'=>$products]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -39,6 +42,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create', Product::class);
+        
         $validated = $request -> validate([
             'title' => 'required|max:255',
             'artist' => 'required|max:255',
@@ -52,9 +56,14 @@ class ProductController extends Controller
         $product->artist = $request->artist;
         $product->title = $request->title;
         $product->price = $request->price;
+        
+        if($request->file('file')!=null){
+            $imagename=$request->file('file')->store('public/images');
+            $product->imagename=str_replace("public/images/", "", $imagename);
+        }
 
         $product->save();
-        return redirect(route('create'));
+        return redirect('/products');
     }
 
     /**
